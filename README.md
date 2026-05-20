@@ -61,3 +61,12 @@ The frontend reads the file via the File API and sends the text content to Rust.
 ```bash
 cd src-tauri && cargo test
 ```
+
+## CI / Releases
+
+| Workflow | Trigger | Action |
+|----------|---------|--------|
+| [Test](.github/workflows/test.yml) | push / PR on `develop` | `npm run build` + `cargo test` |
+| [Release](.github/workflows/release.yml) | push on `main` | DMG universel + GitHub Release `v{version}` |
+
+Before merging to `main`, bump the version (`package.json`, `Cargo.toml`, `tauri.conf.json`) so each release gets a new tag. Re-pushing the same version updates the existing release assets.
