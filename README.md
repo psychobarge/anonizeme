@@ -1,16 +1,16 @@
 # Anon-ize-me
 
-Application macOS légère (Tauri v2) pour anonymiser des fichiers texte et `.env`.
+Lightweight macOS app (Tauri v2) for anonymizing text and `.env` files.
 
-## Fonctionnalités
+## Features
 
-- Glisser-déposer ou sélection de fichier `.txt` / `.env`
-- Anonymisation locale (aucune donnée envoyée sur le réseau)
-- Détection : JWT, secrets, URLs, emails, UUIDs, IPs, téléphones, hostnames, chemins
-- Placeholders cohérents (`<EMAIL_1>` réutilisé pour la même valeur)
-- Bouton copier vers le presse-papier
+- Drag-and-drop or file picker for `.txt` / `.env` files
+- Local anonymization (no data sent over the network)
+- Detection: JWT, secrets, URLs, emails, UUIDs, IPs, phone numbers, hostnames, paths
+- Consistent placeholders (same value reuses `<EMAIL_1>`, etc.)
+- Copy-to-clipboard button
 
-## Prérequis
+## Prerequisites
 
 - [Node.js](https://nodejs.org/) 18+
 - [Rust](https://www.rust-lang.org/tools/install)
@@ -20,43 +20,43 @@ Application macOS légère (Tauri v2) pour anonymiser des fichiers texte et `.en
 rustup target add aarch64-apple-darwin x86_64-apple-darwin
 ```
 
-## Développement
+## Development
 
 ```bash
 npm install
 npm run tauri dev
 ```
 
-## Build DMG
+## Building a DMG
 
-**Architecture native** (Apple Silicon ou Intel selon la machine) :
+**Native architecture** (Apple Silicon or Intel, depending on your machine):
 
 ```bash
 npm run build:mac
 ```
 
-Le `.dmg` est généré dans `src-tauri/target/release/bundle/dmg/`.
+The `.dmg` is generated in `src-tauri/target/release/bundle/dmg/`.
 
-**Binaire universel** (Intel + Apple Silicon) — nécessite `rustup` :
+**Universal binary** (Intel + Apple Silicon) — requires `rustup`:
 
 ```bash
 rustup target add aarch64-apple-darwin x86_64-apple-darwin
 npm run build:dmg
 ```
 
-Le `.dmg` universel est généré dans `src-tauri/target/universal-apple-darwin/release/bundle/dmg/`.
+The universal `.dmg` is generated in `src-tauri/target/universal-apple-darwin/release/bundle/dmg/`.
 
-## Contrat IPC
+## IPC contract
 
-Une seule commande Tauri :
+Single Tauri command:
 
 ```rust
 anonymize_text(content: String, file_type: Option<String>) -> Result<String, String>
 ```
 
-Le frontend lit le fichier via la File API et envoie le contenu texte à Rust.
+The frontend reads the file via the File API and sends the text content to Rust.
 
-## Tests Rust
+## Rust tests
 
 ```bash
 cd src-tauri && cargo test
