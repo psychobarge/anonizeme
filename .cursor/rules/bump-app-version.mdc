@@ -1,0 +1,14 @@
+---
+description: Obligation de monter la version semver après toute modification de code applicatif
+alwaysApply: true
+---
+
+# Version bump (obligatoire)
+
+Après **toute** tâche où tu modifies du code applicatif dans ce dépôt (`src/`, `index.html`, `src-tauri/src/`, etc.) :
+
+1. **Lis et exécute** la skill `.cursor/skills/bump-app-version/SKILL.md` — ce n'est pas optionnel.
+2. Fais-le **avant** de considérer la tâche terminée, de proposer un commit ou une PR.
+3. Ne termine pas la session sans avoir bumpé la version (sauf si l'utilisateur demande explicitement de ne pas toucher la version).
+
+Exceptions : session qui ne modifie que la version, README seul sans code, ou fichiers générés (`dist/`, `src-tauri/target/`, `node_modules/`).

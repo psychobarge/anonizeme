@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anon-ize-me</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <h1>Anon-ize-me</h1>
+        <p class="subtitle">Anonymisez vos fichiers .txt et .env en un clic</p>
+        <span id="app-version" class="app-version" aria-label="Version"></span>
+      </header>
+
+      <div class="input-tabs" role="tablist" aria-label="Mode d'entrée">
+        <button
+          type="button"
+          class="tab active"
+          data-tab="file"
+          role="tab"
+          aria-selected="true"
+          aria-controls="drop-zone"
+        >
+          Fichier
+        </button>
+        <button
+          type="button"
+          class="tab"
+          data-tab="text"
+          role="tab"
+          aria-selected="false"
+          aria-controls="text-input-section"
+        >
+          Texte
+        </button>
+      </div>
+
+      <section
+        id="drop-zone"
+        class="drop-zone"
+        role="button"
+        tabindex="0"
+        aria-label="Déposer un fichier texte ou .env"
+      >
+        <input
+          id="file-input"
+          type="file"
+          accept=".txt,.env,.text,text/plain"
+          hidden
+        />
+        <div class="drop-zone-content">
+          <span class="drop-icon" aria-hidden="true">📄</span>
+          <div class="drop-text">
+            <p class="drop-title">Glissez un fichier ici</p>
+            <p class="drop-hint">ou cliquez pour parcourir (.txt, .env)</p>
+            <p id="file-name" class="file-name hidden"></p>
+          </div>
+        </div>
+      </section>
+
+      <div id="text-input-section" class="text-input-section hidden">
+        <textarea
+          id="text-input"
+          placeholder="Collez votre texte ici..."
+          aria-label="Texte à anonymiser"
+        ></textarea>
+      </div>
+
+      <div class="actions">
+        <button id="anonymize-btn" class="btn btn-primary" disabled>
+          Anon-ize-me
+        </button>
+      </div>
+
+      <section id="result-section" class="result-section hidden">
+        <div class="result-header">
+          <h2>Aperçu anonymisé</h2>
+          <button id="copy-btn" class="btn btn-secondary">Copier</button>
+        </div>
+        <pre id="preview" class="preview" aria-live="polite"></pre>
+        <p id="copy-feedback" class="copy-feedback hidden">Copié !</p>
+      </section>
+    </main>
+  </body>
+</html>
